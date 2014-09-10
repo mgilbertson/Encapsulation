@@ -10,67 +10,67 @@ import java.util.Date;
  * @author      Jim Lombardo, WCTC Instructor
  * @version     1.01
  */
-public class Employee {
-    String firstName;
-    String lastName;
-    public String ssn;
-    public Date birthDate;
-    boolean metWithHr;
-    boolean metDeptStaff;
-    boolean reviewedDeptPolicies;
-    boolean movedIn;
-    String cubeId;
+public abstract class Employee {
+    private String firstName;
+    private String lastName;
+    private String ssn;
+    private Date birthDate;
+    
 
     public Employee() {
 
     }
 
     // Assume this must be performed first
-    public void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
-    }
+    public abstract void meetWithHrForBenefitAndSalryInfo();
 
     // Assume this is must be performed second
-    public void meetDepartmentStaff() {
-        if(metWithHr) {
-            metDeptStaff = true;
-        } else {
-            System.out.println("Sorry, you cannot meet with "
-                    + "department staff until you have met with HR.");
-        }
-    }
+    public abstract void meetDepartmentStaff();
 
     // Assume this must be performed third
-    public void reviewDeptPolicies() {
-        if(metWithHr && metDeptStaff) {
-            reviewedDeptPolicies = true;
-        } else {
-            System.out.println("Sorry, you cannot review "
-                    + " department policies until you have first met with HR "
-                    + "and then with department staff.");
-        }
-    }
+    public abstract void reviewDeptPolicies();
 
     // Assume this must be performed 4th
-    public void moveIntoCubicle(String cubeId) {
-        if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
-            this.cubeId = cubeId;
-            this.movedIn = true;
-        } else {
-            System.out.println("Sorry, you cannot move in to a "
-                    + "cubicle until you have first met with HR "
-                    + "and then with department staff, and then reviewed"
-                    + "department policies.");
-        }
+    public abstract void moveIntoCubicle(String cubeId);
 
+    public abstract String getStatus();
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getStatus() {
-        if(metWithHr && metDeptStaff
-           && reviewedDeptPolicies && movedIn) {
-            return "Orientation is complete";
-        } else {
-            return "Orientation in progress...";
-        }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getCubeId() {
+        return cubeId;
+    }
+    
+    
+    
 }
