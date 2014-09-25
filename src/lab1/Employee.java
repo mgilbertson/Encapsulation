@@ -15,26 +15,13 @@ public abstract class Employee {
     private String lastName;
     private String ssn;
     private Date birthDate;
+    private int cubeId;
     
-
-    public Employee() {
-
+    public Employee(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-
-    // Assume this must be performed first
-    public abstract void meetWithHrForBenefitAndSalryInfo();
-
-    // Assume this is must be performed second
-    public abstract void meetDepartmentStaff();
-
-    // Assume this must be performed third
-    public abstract void reviewDeptPolicies();
-
-    // Assume this must be performed 4th
-    public abstract void moveIntoCubicle(String cubeId);
-
-    public abstract String getStatus();
-
+    
     public String getFirstName() {
         return firstName;
     }
@@ -67,10 +54,34 @@ public abstract class Employee {
         this.birthDate = birthDate;
     }
 
-    public String getCubeId() {
+    public int getCubeId() {
         return cubeId;
     }
+    public void setCubeId(int cubeId){
+        this.cubeId = cubeId;
+    }
     
+    public abstract String getStatus();
+
+    // Assume this is must be performed second
+    public abstract void meetDepartmentStaff();
+
+    // Assume this must be performed first
+    public abstract void meetWithHrForBenefitAndSalryInfo();
+
+    // Assume this must be performed 4th
+    public abstract void moveIntoCubicle(int cubeId);
+
+    // Assume this must be performed third
+    public abstract void reviewDeptPolicies();
     
-    
+    public String hireEmployee() {
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(5);
+        return getStatus();
+    }
 }
+    
+   

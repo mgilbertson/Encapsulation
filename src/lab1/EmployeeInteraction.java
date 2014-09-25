@@ -10,18 +10,26 @@ package lab1;
  *
  * @author Mitch
  */
-public class EmployeeInteraction extends Employee{
+public class EmployeeInteraction extends Employee {
     private boolean metWithHr;
     private boolean metDeptStaff;
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
-    private String cubeId;
+    private int cubeId = 1;
+
+    public EmployeeInteraction(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
+
+
     // Assume this must be performed first
+    @Override
     public void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
     }
 
     // Assume this is must be performed second
+    @Override
     public void meetDepartmentStaff() {
         if(metWithHr) {
             metDeptStaff = true;
@@ -32,6 +40,7 @@ public class EmployeeInteraction extends Employee{
     }
 
     // Assume this must be performed third
+    @Override
     public void reviewDeptPolicies() {
         if(metWithHr && metDeptStaff) {
             reviewedDeptPolicies = true;
@@ -43,7 +52,8 @@ public class EmployeeInteraction extends Employee{
     }
 
     // Assume this must be performed 4th
-    public void moveIntoCubicle(String cubeId) {
+    @Override
+    public void moveIntoCubicle(int cubeId) {
         if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
             this.cubeId = cubeId;
             this.movedIn = true;
@@ -56,6 +66,7 @@ public class EmployeeInteraction extends Employee{
 
     }
 
+    @Override
     public String getStatus() {
         if(metWithHr && metDeptStaff
            && reviewedDeptPolicies && movedIn) {
